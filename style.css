@@ -1,157 +1,256 @@
-/* Estilos básicos */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding-bottom: 40px;
-}
+/* ---------------------------------- */
+/* ESTILOS ESPECÍFICOS DEL HEADER/LOGO */
+/* ---------------------------------- */
 
 header {
-    background-color: #34495e;
-    color: white;
-    padding: 20px;
+    background-color: #ffffff;
+    color: #34495e;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-bottom: 3px solid #f36f21;
 }
 
-h1, h2 {
+#appLogo {
+    /* 1. Responsividad Máxima: La imagen nunca será más ancha que su contenedor. */
+    width: 100%;
+    
+    /* 2. Límite de Tamaño: Definimos el tamaño máximo que debe ocupar. */
+    /* En escritorio, se limita al 60% del ancho del header, pero no más de 120px de alto. */
+    max-width: 60%; 
+
+    /* 3. Estabilidad: La altura se ajusta proporcionalmente para mantener la relación de aspecto. */
+    height: auto; 
+    
+    /* 4. Límite en Escritorio: Evita que sea gigante en monitores grandes. */
+    max-height: 120px; 
+    
+    margin-bottom: 5px;
+    margin-left: auto; /* Para centrar la imagen dentro del header */
+    margin-right: auto;
+    display: block; /* Necesario para que los márgenes auto funcionen */
+}
+
+/* ---------------------------------- */
+/* MEDIA QUERY: Ajuste para Móviles */
+/* ---------------------------------- */
+@media (max-width: 600px) {
+    #appLogo {
+        /* En pantallas pequeñas, permitimos que ocupe hasta el 80% del ancho, */
+        /* para que sea más visible, y un poco menos de alto máximo. */
+        max-width: 80%;
+        max-height: 100px;
+    }
+    
+    /* Pequeño ajuste para el título en móviles */
+    #tituloApp {
+        font-size: 1.5rem;
+    }
+}
+
+/* ---------------------------------- */
+/* ESTILOS GENERALES Y DE FORMULARIO (Se mantienen igual) */
+/* ---------------------------------- */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
+    color: #34495e;
 }
 
 main {
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 0 15px;
+    padding: 20px;
 }
 
-/* Sistema de Vistas (Páginas) */
+/* Estilos para las vistas (sections) */
 .vista {
-    display: none; /* Oculta todas las vistas por defecto */
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
 }
+
 .vista.activa {
-    display: block; /* Muestra solo la vista activa */
+    display: block;
 }
 
-/* Estilos del Menú Principal */
-#vistaMenu {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 15px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+/* Estilos de Botones de Menú */
 .menu-boton {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
     padding: 25px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #34495e;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #f36f21; /* Color GenDiesel principal */
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    min-height: 120px;
-}
-.menu-boton:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-}
-.menu-boton:disabled {
-    background-color: #eee;
-    color: #aaa;
-    cursor: not-allowed;
-}
-.menu-boton .emoji {
-    font-size: 32px;
-    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-/* Estilos del Formulario */
+.menu-boton:hover {
+    background-color: #d15d18; 
+    transform: translateY(-2px);
+}
+
+.menu-boton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.menu-boton .emoji {
+    font-size: 1.8rem;
+    margin-right: 15px;
+}
+
+/* Estilos de Tarjetas y Formularios */
 .card {
     background-color: #ffffff;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    padding: 24px;
-}
-.form-group {
     margin-bottom: 20px;
 }
-.form-group label {
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+    margin-bottom: 5px;
+    font-weight: bold;
     color: #555;
 }
+
 input[type="text"],
 input[type="date"],
 select,
 textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: inherit;
-}
-select[disabled] {
-    background-color: #eee;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    font-size: 1rem;
+    transition: border-color 0.2s;
 }
 
-/* Estilos de Botones */
-.button-primary {
-    width: 100%;
-    padding: 15px;
-    background-color: #3498db;
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #f36f21;
+    outline: none;
+}
+
+/* Botones Primarios y Secundarios */
+.button-primary,
+.button-secondary {
+    padding: 12px 20px;
     border: none;
     border-radius: 6px;
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
+    font-weight: bold;
     cursor: pointer;
+    margin-right: 10px;
     transition: background-color 0.2s;
-    margin-bottom: 10px;
-}
-.button-primary:hover {
-    background-color: #2980b9;
-}
-.button-secondary {
-    width: 100%;
-    padding: 15px;
-    background-color: #f4f7f6;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    color: #555;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
 }
 
-/* Estilos de la Lista de Pendientes */
+.button-primary {
+    background-color: #28a745; /* Verde para acciones positivas/guardar */
+    color: white;
+}
+
+.button-primary:hover {
+    background-color: #218838;
+}
+
+.button-secondary {
+    background-color: #6c757d; /* Gris para volver o cancelar */
+    color: white;
+}
+
+.button-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Mensajes de feedback (reemplazo de alert) */
+.app-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { bottom: -50px; opacity: 0; }
+    to { bottom: 20px; opacity: 1; }
+}
+
+/* Estilos para la lista de pendientes */
 #listaPendientesContenedor {
+    margin-top: 15px;
+}
+
+.pendiente-card {
+    background-color: #ffffff;
+    border-left: 5px solid #f36f21; /* Línea de color para destacar */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    margin-bottom: 10px;
+}
+
+.pendiente-card h3 {
+    color: #f36f21;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.pendiente-card p {
+    margin: 3px 0;
+    font-size: 0.95rem;
+}
+
+.loading-message, .empty-message, .error-message {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
     margin-top: 20px;
 }
-.pendiente-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border-left: 5px solid #e74c3c; /* Borde rojo para "pendiente" */
+
+.loading-message {
+    background-color: #e6f7ff;
+    color: #007bff;
 }
-.pendiente-card h3 {
-    margin: 0 0 10px 0;
-    color: #34495e;
+
+.empty-message {
+    background-color: #e6ffe6;
+    color: #28a745;
+    font-weight: bold;
 }
-.pendiente-card p {
-    margin: 4px 0;
-    color: #555;
-}
-.pendiente-card strong {
-    color: #333;
+
+.error-message {
+    background-color: #ffe6e6;
+    color: #dc3545;
+    font-weight: bold;
 }
